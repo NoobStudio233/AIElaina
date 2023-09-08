@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Player</title>
+</head>
+<body>
+    <button onclick="generateAudio()">on</button>
+    <input type="text" id="input">
+    <audio id="audio" controls></audio>
+
+    <script>
+        function generateAudio() {
+            const serverUrl = 'http://127.0.0.1:5000';
+            const endpoint = '/generate_audio'; // API端点
+            const text = document.getElementById("input").value; // 输入的文本
+            let updatingInterval; 
+            // 发送POST请求
+            fetch(serverUrl + endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'text': text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 从响应中获取音频文件路径
+                const audioUrlMain = data.audio_url;
+                
+                // 在音频元素中设置src，以便播放音频
+                const audioElement = document.getElementById('audio');
+                audioElement.src = audioUrlMain;
+
+                // 播放音频
+                audioElement.play();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function startUpdatingAudio() {
+            // 每5秒检测一次
+            updatingInterval = setInterval(generateAudio, 5000);
+        }
+
+        function stopUpdatingAudio() {
+            // 取消定时器
+            clearInterval(updatingInterval);
+        }
+        function clearCacheAndPlayNext() {
+            // 清除音频缓存
+            const audioElement = document.getElementById('audio');
+            audioElement.src = '';
+
+            // 播放下一个音频
+            generateAudio();
+        }
+    </script>
+</body>
+</html>

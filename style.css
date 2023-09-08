@@ -1,0 +1,263 @@
+*{
+  -webkit-user-drag: none;
+}
+
+@font-face {
+  font-family: "font1";
+  src: url("./fonts/XiaoXiangjiaoFont-2OXpK.ttf") format("truetype");
+}
+@font-face {
+  font-family: "font2";
+  src: url("./fonts/Howlimit-EawYe.ttf") format("truetype");
+}
+@font-face {
+  font-family: "font3";
+  src: url("./fonts/LuoLuoNotangYuanTiJojisin-AAX2.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  background: #282c34;
+  font-family: Arial, sans-serif;
+  color: #fff; 
+}
+
+header {
+  -webkit-app-region: drag;
+  background-color: #2a5fa0;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header-content {
+  
+  display: flex;
+  flex: 1;
+
+}
+
+#headerTitle {
+  display: flex;
+  align-items: center; /* 使用 Flexbox 来垂直居中 */
+  
+  flex: 1;
+  font-size: 19px;
+}
+
+.headerTitle{
+  font-family:"font3";
+}
+
+#headerMini{
+  margin-right: 8px;
+}
+
+#headerClose,#headerMini {
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerMini::before,#headerClose::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+}
+
+#headerClose::before{
+  background-color: #fb645b;
+  border: 1.5px solid #c9746d;
+}
+
+#headerMini::before{
+  background-color: #fdc62e;
+  border: 1.5px solid #c49d36;
+}
+
+
+#headerClose:hover:before{
+  background-color: #ff4e4e;
+}
+
+#headerMini:hover:before{
+  background-color: #dfac22;
+}
+
+/* #headerMini::after {
+  content: "-"; 
+  font-size: 25px; 
+  color: rgb(248, 184, 184); 
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#headerClose::after {
+  content: "×"; 
+  font-size: 25px;
+  color: rgb(248, 184, 184); 
+  visibility: hidden; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#headerMini:hover::after {
+  visibility: visible; 
+}
+
+#headerClose:hover::after {
+  visibility: visible; 
+} */
+
+#setting{
+  width: 23px;
+  height: 23px;
+}
+
+.setting img:hover{
+  content: url("./resource/shezhi-gray.png");
+  /* box-shadow: 0 0 0 2px rgb(62, 62, 62); 
+  border-radius: 5px; */
+}
+
+.setting{
+  -webkit-app-region:no-drag;
+  margin-right: 20px;
+}
+
+.settingIMain{
+  margin-right: 10px;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+}
+/* 
+#startBtnMain{
+  text-align: center;
+  font-size: 80px;
+  background-color: #ff0000;
+  user-select:none;
+  cursor: pointer;
+}
+#startBtnMain:hover{
+  background-color: #b02c2c;
+} */
+
+.circle-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: rotateImage 4s linear infinite;
+  padding: 20px;
+}
+
+@keyframes rotateImage {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 70vh;
+}
+
+.startBtn {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 30px;
+  padding: 15px 40px;
+  background: linear-gradient(45deg, #00ff99, #ff00ff, #00ff99);
+  background-size: 200% 200%;
+  animation: gradientFlow 4s linear infinite;
+  border-radius: 5px;
+  user-select: none;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.startBtn:hover::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 3px solid #2fa475;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.startBtn:hover::before {
+  opacity: 1;
+}
+
+.loading-element {
+  font-size: 16px;
+  visibility: hidden;
+}
+.input{
+  
+  margin: 10px;
+  padding: 5px;
+  border:1px solid #575757;
+  border-radius: 5px;
+  box-shadow: none;
+  outline: none;
+  color: #ffffff;
+	background-color:transparent;
+  transition:0.1s ease-out
+}
+.input:focus-within {
+  border-color: #ffcc00;
+  width:29em;
+}
+.input:valid{
+  border-color: #ffcc00; 
+  width:29em;
+}
+
+input:focus::placeholder{
+  opacity: 0;
+}
